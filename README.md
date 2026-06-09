@@ -198,7 +198,17 @@ basandose en el envio de jwt para la autenticacion.
 4. Puertos utilizados
     backend:
         8080
-    
+        
+5. configuracion base de datos
+    Parámetros de conexión:
+        Motor:	H2 Database
+        URL	jdbc: h2:mem:testdb
+        Usuario:sa
+        Contraseña	(vacía)
+  
+6. Integrantes de la dupla
+    Alvaro Vasquez
+    Jose Valenzuela
         
         
 

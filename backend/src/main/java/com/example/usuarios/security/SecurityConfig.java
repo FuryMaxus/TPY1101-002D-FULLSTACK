@@ -34,7 +34,8 @@ public class SecurityConfig {
                                 "/doc/swagger-ui.html",
                                 "/webjars/**",
                                 "/doc/**",
-                                "/favicon.ico"
+                                "/favicon.ico",
+                                "/h2-console/**"
                         ).permitAll()
                         .requestMatchers("/api/v1/auth/registro/admin").hasAuthority("ROL_ADMIN")
                         .requestMatchers("/api/v1/auth/**").permitAll()
