@@ -17,7 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequestMapping("api/v1/auth")
 public class AuthController {
     @Autowired
@@ -40,7 +42,8 @@ public class AuthController {
         usuario.setEmail(registro.getEmail());
         usuario.setName(registro.getName());
         Usuario user = usuarioService.save(usuario);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Usuario registrado correctamente");
     }
 
     @PostMapping("/ingreso")

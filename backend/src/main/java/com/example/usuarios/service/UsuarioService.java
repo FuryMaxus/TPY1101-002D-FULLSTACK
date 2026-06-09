@@ -48,7 +48,7 @@ public class UsuarioService implements UserDetailsService{
         }
 
 
-        Usuario usuarioActualizado = usuarioRepository.save(usuario);
+        usuarioRepository.save(usuario);
         UserProfileDTO dto = new UserProfileDTO();
         dto.setName(usuario.getName());
         return dto;

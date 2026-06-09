@@ -15,13 +15,14 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @GetMapping
     public ResponseEntity<List<Usuario>> listar() {
         List<Usuario> usuarios = usuarioService.findAll();
         return ResponseEntity.ok(usuarios);
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<Usuario> obtenerPorUsername(String username) {
+    public ResponseEntity<Usuario> obtenerPorUsername(@PathVariable String username) {
         try {
             Usuario usuario = usuarioService.findByUsername(username);
             return ResponseEntity.ok(usuario);
@@ -31,7 +32,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{username}")
-    public ResponseEntity<UserProfileDTO> actualizarPerfil(String username, @RequestBody UserProfileDTO updateProfileDto){
+    public ResponseEntity<UserProfileDTO> actualizarPerfil(@PathVariable String username, @RequestBody UserProfileDTO updateProfileDto){
         try {
             UserProfileDTO updateDto = usuarioService.updateProfile(username, updateProfileDto);
             return ResponseEntity.ok(updateDto);
