@@ -25,7 +25,7 @@ function UserTable({ users, loading, onEdit, onDelete }) {
             </tr>
           ) : (
             users.map((user, index) => (
-              <tr key={user.id}>
+              <tr key={user.username}>
                 <td>{index + 1}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
@@ -36,7 +36,7 @@ function UserTable({ users, loading, onEdit, onDelete }) {
                     <button className={styles.btnEdit} onClick={() => onEdit(user)}>
                       Editar
                     </button>
-                    <button className={styles.btnDelete} onClick={() => onDelete(user.id)}>
+                    <button className={styles.btnDelete} onClick={() => onDelete(user.username)}>
                       Eliminar
                     </button>
                   </div>

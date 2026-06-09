@@ -1,13 +1,6 @@
-const BASE_URL = 'http://localhost:8080/api/users'
-
-// Datos simulados mientras no existe el backend
-let mockUsers = [
-  { id: 1, name: 'Juan Pérez', email: 'juan@empresa.com', username: 'jperez', role: 'ADMIN' },
-  { id: 2, name: 'María López', email: 'maria@empresa.com', username: 'mlopez', role: 'USER' },
-  { id: 3, name: 'Carlos Soto', email: 'carlos@empresa.com', username: 'csoto', role: 'USER' },
-]
-let nextId = 4
-const USE_MOCK = true  // Cambia a false cuando el backend esté listo
+const BASE_URL = 'http://localhost:8080/api/v1/usuarios'
+const AUTH_URL = 'http://localhost:8080/api/v1/auth'
+const USE_MOCK = false
 
 function getHeaders() {
   const token = localStorage.getItem('token')
@@ -30,7 +23,7 @@ export async function createUser(user) {
     mockUsers.push(newUser)
     return newUser
   }
-  const response = await fetch(BASE_URL, {
+  const response = await fetch(`${AUTH_URL}/registro`, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify(user),
@@ -39,12 +32,12 @@ export async function createUser(user) {
   return response.json()
 }
 
-export async function updateUser(id, user) {
+export async function updateUser(username, user) {
   if (USE_MOCK) {
-    mockUsers = mockUsers.map((u) => (u.id === id ? { ...u, ...user } : u))
-    return { ...user, id }
+    mockUsers = mockUsers.map((u) => (u.username === username ? { ...u, ...user } : u))
+    return { ...user, username }
   }
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${BASE_URL}/${username}`, {
     method: 'PUT',
     headers: getHeaders(),
     body: JSON.stringify(user),
@@ -53,12 +46,12 @@ export async function updateUser(id, user) {
   return response.json()
 }
 
-export async function deleteUser(id) {
+export async function deleteUser(username) {
   if (USE_MOCK) {
-    mockUsers = mockUsers.filter((u) => u.id !== id)
+    mockUsers = mockUsers.filter((u) => u.username !== username)
     return
   }
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  const response = await fetch(`${BASE_URL}/${username}`, {
     method: 'DELETE',
     headers: getHeaders(),
   })
