@@ -18,18 +18,19 @@ export async function getUsers() {
 }
 
 export async function createUser(user) {
-  if (USE_MOCK) {
-    const newUser = { ...user, id: nextId++ }
-    mockUsers.push(newUser)
-    return newUser
-  }
   const response = await fetch(`${AUTH_URL}/registro`, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify(user),
   })
   if (!response.ok) throw new Error('Error al crear usuario')
-  return response.json()
+  
+  const text = await response.text()
+  try {
+    return JSON.parse(text)
+  } catch {
+    return { ...user }
+  }
 }
 
 export async function updateUser(username, user) {
