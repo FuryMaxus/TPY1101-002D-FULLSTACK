@@ -61,7 +61,7 @@ public class UsuarioService implements UserDetailsService{
                     return new UsernameNotFoundException("Usuario no encontrado");
                 });
         return new User(
-                user.getEmail(),
+                user.getUsername(),
                 user.getPassword(),
                 List.of(new SimpleGrantedAuthority("user")));
     }
