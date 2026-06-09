@@ -168,4 +168,38 @@ El proyecto desarrollado deberá incluir un README propio con:
 * Integrantes de la dupla.
 
 ```
+1. Explicación técnica breve de la solución.
+El presente projecto presenta una solucion basica para un sistema de auth y usuarios,
+basandose en el envio de jwt para la autenticacion.
+2. Instrucciones de instalación
+    Requisitos
+        Java 21
+        Maven 3.9 o superior
+        Git
+        Node.js 25
+    i. clonar projecto
+    ii. instalar dependencias del back
+        mvn clean install
+    iii. ejecutar el back 
+        mvn spring-boot:run
+3. Dependencias ejecutadas
+    back:
+        Spring Boot 4.x
+        Spring Web MVC
+        Spring Security
+        Spring Data JPA
+        H2 Database
+        JJWT 0.11.5
+        Lombok
+        JWT (JSON Web Token)
+        BCryptPasswordEncoder
+        Hibernate
+        Spring Data JPA
+4. Puertos utilizados
+    backend:
+        8080
+    
+        
+        
+
 ```
